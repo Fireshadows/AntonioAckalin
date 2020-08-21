@@ -3554,6 +3554,15 @@ readers do not read off random characters that represent icons */
 
 .fa-star:before {
   content: "\f005"; }
+  
+.fa-user:before {
+  content: "\f007"; }
+  
+.fa-suitcase:before {
+  content: "\f0f2"; }
+  
+.fa-bell:before {
+  content: "\f0f3"; }
 
 .fa-star-and-crescent:before {
   content: "\f699"; }
