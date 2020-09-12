@@ -491,6 +491,10 @@ pre {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
     max-width: 1140px; } }
 
+.about-intro {
+	padding: 0 1.5rem 0 1.5rem;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
