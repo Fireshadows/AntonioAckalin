@@ -908,5 +908,31 @@
   $.jqBootstrapValidation = function (options) {
     $(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this,arguments);
   };
+	/*
+	$(document).ready(function(){
+		$('.modal').each(function(){
+            var src = $(this).find('iframe').attr('src');
+
+			$(this).on('click', function(){
+
+				$(this).find('iframe').attr('src', '');
+				$(this).find('iframe').attr('src', src);
+
+			});
+		});
+	});
+	*/
+	/*$(".modal").on('hidden.bs.modal', function (e) {
+		var url = $(".modal #shame").attr("src");
+		$(".modal #shame").attr("src", url);
+	});*/
+	$(function(){
+	  $("body").on('hidden.bs.modal', function (e) {
+		var $iframes = $(e.target).find("iframe");
+		$iframes.each(function(index, iframe){
+		  $(iframe).attr("src", $(iframe).attr("src"));
+		});
+	  });
+	});
 
 })( jQuery );
