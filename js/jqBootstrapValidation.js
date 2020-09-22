@@ -908,24 +908,7 @@
   $.jqBootstrapValidation = function (options) {
     $(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this,arguments);
   };
-	/*
-	$(document).ready(function(){
-		$('.modal').each(function(){
-            var src = $(this).find('iframe').attr('src');
-
-			$(this).on('click', function(){
-
-				$(this).find('iframe').attr('src', '');
-				$(this).find('iframe').attr('src', src);
-
-			});
-		});
-	});
-	*/
-	/*$(".modal").on('hidden.bs.modal', function (e) {
-		var url = $(".modal #shame").attr("src");
-		$(".modal #shame").attr("src", url);
-	});*/
+	
 	$(function(){
 	  $("body").on('hidden.bs.modal', function (e) {
 		var $iframes = $(e.target).find("iframe");
@@ -934,5 +917,18 @@
 		});
 	  });
 	});
-
+	
+	$( ".project-header" ).click(function() {
+		$(this).siblings(".project-content").slideToggle( "fast" );
+	});
+	
+	/*
+	 * On loading page, this will hide all content so reader can show any content they'd like to read
+	 */
+	var $contents = $("body").find(".project-content");
+	$contents.each(function(index){
+		$(this).slideUp();
+	});
+	
+	
 })( jQuery );
