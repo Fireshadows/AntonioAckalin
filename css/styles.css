@@ -4226,6 +4226,9 @@ a.close.disabled {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
+  /*
+  background-image: url("../img/background/funky_lines.png")
+  */
   background-color: #fff;
   background-clip: padding-box;
   border: 0 solid rgba(0, 0, 0, 0.2);
@@ -4737,7 +4740,7 @@ button.bg-primary:focus {
 
 .bg-secondary {
   background-image: url('../img/portfolio/bluenavy_wash_wall.png') !important;
-/*  background-color: #233a5c !important;*/ }
+  background-color: #233a5c !important; }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
 button.bg-secondary:hover,
@@ -7422,7 +7425,7 @@ form .row:first-child .floating-label-form-group {
   height: 2rem; }
 
 .bg-whitepattern {
-  background-image:url("../img/background/whitediamond.png");
+  background-image:url("../img/background/gplaypattern.png");
 }
 
 .portfolio {
