@@ -4726,7 +4726,7 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-/*	background-image:url("skewed_red.png");*/
+/*	background-image:url("../img/background/skewed_red.png");*/
   background-color: #A13941 !important;
   }
 
@@ -4736,7 +4736,7 @@ button.bg-primary:focus {
   background-color: #7b2c32 !important; }
 
 .bg-secondary {
-  background-image: url('bluenavy_wash_wall.png') !important;
+  background-image: url('../img/portfolio/bluenavy_wash_wall.png') !important;
 /*  background-color: #233a5c !important;*/ }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -7422,7 +7422,7 @@ form .row:first-child .floating-label-form-group {
   height: 2rem; }
 
 .bg-whitepattern {
-  background-image:url("whitediamond.png");
+  background-image:url("../img/background/whitediamond.png");
 }
 
 .portfolio {
