@@ -4729,7 +4729,7 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-/*	background-image:url("../img/background/skewed_red.png");*/
+  background-image:url("../img/background/memphis-red.png");
   background-color: #A13941 !important;
   }
 
@@ -4739,7 +4739,7 @@ button.bg-primary:focus {
   background-color: #7b2c32 !important; }
 
 .bg-secondary {
-  background-image: url('../img/portfolio/bluenavy_wash_wall.png') !important;
+  background-image: url('../img/background/funky-navy.png') !important;
   background-color: #233a5c !important; }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
@@ -7419,12 +7419,14 @@ form .row:first-child .floating-label-form-group {
   color: #fff; }
 
 .copyright {
-  background-color: #152337; }
+  background-color: #152337;
+  background-image: url('../img/background/funky-blue.png')  }
 
 #brandImage {
   height: 2rem; }
 
 .bg-whitepattern {
+  background-color: #ffff;
   background-image:url("../img/background/gplaypattern.png");
 }
 
