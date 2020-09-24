@@ -527,7 +527,7 @@ pre {
 
 .col-xl,
 .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg,
-.col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md,
+.col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-5-tools, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md,
 .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm,
 .col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col,
 .col-auto, .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1 {
@@ -931,6 +931,15 @@ pre {
     margin-left: 83.3333333333%; }
   .offset-md-11 {
     margin-left: 91.6666666667%; } }
+
+/*@media (min-width: 316px) {*/
+  .col-lg-tools {
+    flex: 0 0 50%;
+    max-width: 50%; } 
+
+.tool-list {
+	list-style-image: url("../img/icon/white-star.png");
+	list-style-position: inside;}
 
 @media (min-width: 992px) {
   .col-lg {
@@ -4729,7 +4738,10 @@ a.close.disabled {
   vertical-align: text-top !important; }
 
 .bg-primary {
-  background-image:url("../img/background/memphis-red.png");
+  background-image:url("../img/background/congruent-red.png") !important;
+  background-color: #A13941 !important;
+  }
+.bg-primary-color {
   background-color: #A13941 !important;
   }
 
@@ -4740,6 +4752,9 @@ button.bg-primary:focus {
 
 .bg-secondary {
   background-image: url('../img/background/funky-navy.png') !important;
+  background-color: #233a5c !important; }
+  
+.bg-secondary-color {
   background-color: #233a5c !important; }
 
 a.bg-secondary:hover, a.bg-secondary:focus,
