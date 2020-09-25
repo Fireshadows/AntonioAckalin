@@ -938,7 +938,7 @@ pre {
     max-width: 50%; } 
 
 .tool-list {
-	list-style-image: url("../img/icon/white-star.png");
+	list-style-image: url("../img/icon/white-star.svg");
 	list-style-position: inside;}
 
 @media (min-width: 992px) {
