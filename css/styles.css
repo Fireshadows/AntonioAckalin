@@ -938,9 +938,36 @@ pre {
     max-width: 50%; } 
 
 .tool-list {
-	list-style-image: url("../img/icon/white-star.svg");
-	list-style-position: inside;}
-
+	/*list-style-image: url("../img/icon/white-star.svg");
+	list-style-position: inside;
+	padding-bottom: 10px;
+	*/
+	/*background: url("../img/icon/white-star.svg") no-repeat 10% 50%; /* <-- change `left` & `top` too for extra control */
+	background:no-repeat 15% 50%;
+	padding: 0px 0px 0px 30%;
+	/* reset styles (optional): */
+	list-style: none;
+	margin: 0;
+	}
+	
+.tool-unity {	background-image: url("../img/icon/tools/icons8-unity.svg"); }
+.tool-unreal {	background-image: url("../img/icon/tools/icons8-unreal-engine.svg"); }
+.tool-ps {		background-image: url("../img/icon/tools/icons8-adobe-photoshop.svg"); }
+.tool-ai {		background-image: url("../img/icon/tools/icons8-adobe-illustrator.svg"); }
+.tool-audacity {background-image: url("../img/icon/tools/icons8-audacity.svg"); }
+.tool-fl {		background-image: url("../img/icon/tools/icons8-fl-studio.svg"); }
+.tool-vegas {	background-image: url("../img/icon/tools/icons8-vegas.svg"); }
+.tool-vs {		background-image: url("../img/icon/tools/icons8-visual-studio.svg"); }
+/*
+.tool-unity {	list-style-image: url("../img/icon/tools/icons8-unity.svg"); }
+.tool-unreal {	list-style-image: url("../img/icon/tools/icons8-unreal-engine.svg"); }
+.tool-ps {		list-style-image: url("../img/icon/tools/icons8-adobe-photoshop.svg"); }
+.tool-ai {		list-style-image: url("../img/icon/tools/icons8-adobe-illustrator.svg"); }
+.tool-audacity {list-style-image: url("../img/icon/tools/icons8-audacity.svg"); }
+.tool-fl {		list-style-image: url("../img/icon/tools/icons8-fl-studio.svg"); }
+.tool-vegas {	list-style-image: url("../img/icon/tools/icons8-vegas.svg"); }
+.tool-vs {		list-style-image: url("../img/icon/tools/icons8-visual-studio.svg"); }
+*/
 @media (min-width: 992px) {
   .col-lg {
     flex-basis: 0;
