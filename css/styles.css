@@ -468,6 +468,9 @@ pre {
   .container {
     max-width: 1140px; } }
 
+.project-header {
+	cursor: pointer;
+}
 
 .youtube-player {
         position: relative;
@@ -510,7 +513,7 @@ pre {
     }
 
     .youtube-player img:hover {
-        -webkit-filter: brightness(75%);
+        -webkit-filter: brightness(50%);
     }
 
     .youtube-player .play {
@@ -7447,7 +7450,7 @@ h3 {
     left: 0;
     transition: all 0.2s ease-in-out;
     opacity: 0;
-    background-color: rgba(161, 57, 65, 0.9); }
+    background-color: hsl(216 45% 10% / 0.9); }
     .portfolio .portfolio-item .portfolio-item-caption:hover {
       opacity: 1; }
     .portfolio .portfolio-item .portfolio-item-caption .portfolio-item-caption-content {
