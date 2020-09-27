@@ -917,7 +917,7 @@
 		});
 	  });
 	});
-	
+		
 	$( ".project-header" ).click(function() {
 		$(this).siblings(".project-content").slideToggle( "fast" );
 	});

@@ -426,13 +426,15 @@
 				</p></div></div><hr>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe id="shame" width="100%" height="100%" src="https://www.youtube.com/embed/Adwd13_MUaI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe id="shame" width="100%" height="100%" src="https://www.youtube.com/embed/Adwd13_MUaI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				<div class="youtube-player" data-id="Adwd13_MUaI"></div>
                 
 				<!-- Portfolio Modal - Text -->
                 <p class="mb-5">During its exhibition at Gotland Game Conference 2017 (GGC17), RIM RAM RUM was a player-versus-player arcade game. It was controlled with a ship's wheel for steering, button for dashing and a rope that you pulled for firing cannons at your rival, as demonstrated in the trailer below.</p>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/mHF5S1U-vQU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/mHF5S1U-vQU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				<div class="youtube-player" data-id="mHF5S1U-vQU"></div>
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">I was mainly in charge of UI functionality, the implementation of main mechanics such as dashing, jumping, cannonball firing and most importantly for GGC17, input methods that suited our unconventional controls.</p>
 				
@@ -523,7 +525,9 @@
 				</p></div></div><hr>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/4js-2c7N6ME" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/4js-2c7N6ME" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				
+				<div class="youtube-player" data-id="4js-2c7N6ME"></div>
 				
                 <!-- Portfolio Modal - Text -->
                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
@@ -616,7 +620,9 @@
 				</p></div></div><hr>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/1yVosrdHw2s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/1yVosrdHw2s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				<div class="youtube-player" data-id="1yVosrdHw2s"></div>
+				
 								
 				<!-- Portfolio Modal - Header -->
 				<div><h3 class="text-center project-header">Dynamic music system</h3>
@@ -783,7 +789,8 @@
 				</p></div></div><hr>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/NGC-TpGaQX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/NGC-TpGaQX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				<div class="youtube-player" data-id="NGC-TpGaQX0"></div>
 				
 				<!-- Portfolio Modal - Header -->
 				<div><h3 class="text-center project-header">Level altering vegetation</h3>
@@ -868,7 +875,8 @@
 				</p></div></div><hr>
 				
 				<!-- Portfolio Modal - Video -->
-				<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/e_5mpATL9JM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+				<!--<div class="video-container mb-4"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/e_5mpATL9JM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>-->
+				<div class="youtube-player" data-id="e_5mpATL9JM"></div>
 				
 				<!-- Portfolio Modal - Header -->
 				<div><h3 class="text-center project-header">Game states</h3>
@@ -917,6 +925,40 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/freelancer.min.js"></script>
+  
+  <script>
+    /* Light YouTube Embeds by @labnol */
+
+    /* Web: http://labnol.org/?p=27941 */
+
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            var div, n,
+                v = document.getElementsByClassName("youtube-player");
+            for (n = 0; n < v.length; n++) {
+                div = document.createElement("div");
+                div.setAttribute("data-id", v[n].dataset.id);
+                div.innerHTML = labnolThumb(v[n].dataset.id);
+                div.onclick = labnolIframe;
+                v[n].appendChild(div);
+            }
+        });
+
+    function labnolThumb(id) {
+        var thumb = '<img src="https://i.ytimg.com/vi/ID/hqdefault.jpg">',
+            play = '<div class="play"></div>';
+        return thumb.replace("ID", id) + play;
+    }
+
+    function labnolIframe() {
+        var iframe = document.createElement("iframe");
+        iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.id );
+        iframe.setAttribute("frameborder", "0");
+        iframe.setAttribute("allowfullscreen", "1");
+        this.parentNode.replaceChild(iframe, this);
+    }
+
+  </script>
 
 </body>
 
