@@ -468,8 +468,16 @@ pre {
   .container {
     max-width: 1140px; } }
 
+.project-section {
+  background-color: #152337 !important;
+  border-radius: 0.5rem;
+}
 .project-header {
 	cursor: pointer;
+	padding: 10px 0px;
+}
+.project-content {
+	padding: 10px 30px;
 }
 
 .youtube-player {
