@@ -7444,6 +7444,11 @@ h3 {
       line-height: 3.5rem; }
     .masthead .masthead-subheading {
       font-size: 1.5rem; } }
+	  
+	  
+.portfolio .portfolio-item:hover {
+    transform: scaleX(1.05) scaleY(1.05);
+}
 
 .portfolio .portfolio-item {
   cursor: pointer;
@@ -7451,7 +7456,8 @@ h3 {
   display: block;
   max-width: 25rem;
   border-radius: 0.5rem;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out; }
   .portfolio .portfolio-item .portfolio-item-caption {
     position: absolute;
     top: 0;
