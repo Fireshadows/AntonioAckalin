@@ -474,10 +474,10 @@ pre {
 }
 .project-header {
 	cursor: pointer;
-	padding: 10px 0px;
+	padding: 0.5rem 0rem;
 }
 .project-content {
-	padding: 10px 30px;
+	padding: 0.5rem 1rem;
 }
 
 .youtube-player {
