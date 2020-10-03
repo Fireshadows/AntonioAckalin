@@ -477,6 +477,8 @@ pre {
 	padding: 0.5rem 0rem;
 }
 .project-content {
+	text-align: left !important;
+	color: hsl(215 15% 82.5% / 1) !important; 
 	padding: 0.5rem 1rem;
 }
 
@@ -7170,6 +7172,9 @@ button.bg-dark:focus {
 
 .text-white {
   color: #fff !important; }
+  
+.text-bluish {
+  color: hsl(215 20% 85% / 1) !important }
 
 .text-primary {
   color: #A13941 !important; }
