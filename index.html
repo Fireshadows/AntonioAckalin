@@ -451,9 +451,19 @@
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Unconventional input handling</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
+					<div><img class="img-about-me rounded" src="img/portfolio/rimramrum/construction.jpg" alt="Construction of our input device"></div>
 					<p>
-					The great concern at that time was how to have the game recognize inputs from multiple mices, since our constructed controls relied on using a mouse for each player to detect which way a wheel was steering towards. A unity plug-in called Multi Input helped resolve that issue since nearly no other tools was possible to use. The library that the asset provided made it possible for the game to distinguish and handle multiple input devices of the same type.<br>
-					However, the implementation of the new input methods meant that each player needed an input device assigned through code. The game should know what input devices to use for each player since each steering wheel was designed to be used by player 1 and 2 respectively. .  
+						The great concern at that time was how to have the game recognize inputs from multiple mice, since our constructed controls relied on using a mouse for each player to detect which way a wheel was steering towards.
+					</p><p>
+						A Unity plug-in called Multi Input made by Raving Bots helped resolve that issue since nearly no other available tools made it possible for the game to distinguish and handle multiple mice devices.
+					</p>
+					<div><img class="img-about-me rounded" src="img/portfolio/rimramrum/final-construction.jpg" alt="Construction of our input device"></div>
+					<p>
+						However, the implementation of the new input methods provided by the plug-in library meant that each player needed an input device assigned through code. The game needed to know exactly what input device it should use for each player, instead of assigning any device that it could find. Each steering wheel/mouse device was after all designed to be used by player 1 and 2 respectively.
+					</p><p>
+						Multi Input already provides a couple of functions to check if a found device meets certain criterias (such as if the device is a mouse device or not), and by adding another criteria to check which USB port the device was plugged into, we could determine if the found mouse device should be assigned to player 1 (left USB port of the laptop used during exhibition) or player 2 (right USB port).
+					</p><p>
+						This automatic assignation of mouse devices successfully worked during the GGC17 exhibition but was later reworked once the project was further worked on for a digital release with support for gamepads.
 					</p>
 				</div></div>
 				
@@ -462,10 +472,15 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					It was a breeze. 
+					Upon starting the game, players start in a lobby type of screen where they can join the game by pressing any buttons on the gamepad they want to use. After joining, they can select their ship, team or turn on/off auto-aiming for cannonball firing.
+					</p>
+					<img class="img-fluid rounded mb-3" src="img/portfolio/rimramrum/charselect.jpg" alt="">
+					<p>
+						A script called ReadyState.cs keeps track of four instances of the class PlayerSlot, designated to the maximum number of players. Each instance has an enum denoting the state of the slot. Either the slot is waiting for a player to press a button to join, selecting a ship or is ready and waiting for other slots to finish selections.
+					</p><p>
+						Depending on the selected game mode (Free-for-all, Team battle), either the game can be started once at least 2 player slot instances are ready or if at least 2 teams contain one player.
 					</p>
 					<!-- Portfolio Modal - Image -->
-					<img class="img-fluid rounded mb-5" src="img/portfolio/rimramrum/charselect.jpg" alt="">
 				</div></div>
 				
 				<!-- Portfolio Modal - Header -->
@@ -473,10 +488,21 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Gang up on people.  
+					Team battle can be enabled in the lobby. Once enabled, the game will basically look for other types of criterias in order to switch game states or know when a battle is over.
+					</p><p>
+					Data of all teams are stored in an array and consists of the team name, color and number of battles won (which gets displayed after a battle is over).
+					</p><p>
+					When a team battle starts, the GameDirector.cs script will create the actual teams using the datas as reference. It will look through all players to see if they possess data of a team that isn’t created yet, and will create that team if that is the case.
+					</p><p>
+					The teams that are created will hold references to the player ship classes to keep track of what members are part of what teams. A team battle will end upon detecting that only 1 team with alive members remains.
 					</p>
-					<!-- Portfolio Modal - Image -->
-					<img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
+					<!--<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">GameDirector.cs</h3>
+						<div class="project-content">
+							<script src="https://gist.github.com/Fireshadows/f4ef31f7edab4066af3c4ddd7c14e040.js"></script>
+						</div>
+					</div>-->
+					<!-- Portfolio Modal - Image 
+					<img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">-->
 				</div></div>
 				
 				<p class="text-center"><b>W.I.P</b></p>
