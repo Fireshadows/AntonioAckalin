@@ -397,19 +397,19 @@ mark,
   
 .img-about-me {
   margin: 0% 2%;
-  width: 20rem;
+  width: 16.5rem;
   max-width: 100%;
   display: block;
-  margin-left: auto;}
+  margin-right: auto;}
 
 @media (min-width: 768px) {
 .img-about-me {
-  float: left; }
+  float: right; }
 }
   
 @media (max-width: 767px) {
 .img-about-me {
-  margin-right: auto;
+  margin-left: auto;
   margin-bottom: .5rem;}
 }
 
@@ -7337,7 +7337,7 @@ h3 {
     border-color: #dee2e6; } }
 
 .page-section {
-  padding: 6rem 0; }
+  padding: 3rem 0; }
   .page-section .page-section-heading {
     font-size: 2.25rem;
     line-height: 2rem; }
@@ -7574,7 +7574,7 @@ form .row:first-child .floating-label-form-group {
 }
 
 .portfolio {
-  padding-top: 6rem;
+  padding-top: 5rem;
   padding-bottom: 4.5rem; }
 
 .page-section-heading {
