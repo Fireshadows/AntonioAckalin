@@ -394,6 +394,24 @@ mark,
 .img-fluid {
   max-width: 100%;
   height: auto; }
+  
+.img-about-me {
+  margin: 0% 2%;
+  width: 20rem;
+  max-width: 100%;
+  display: block;
+  margin-left: auto;}
+
+@media (min-width: 768px) {
+.img-about-me {
+  float: left; }
+}
+  
+@media (max-width: 767px) {
+.img-about-me {
+  margin-right: auto;
+  margin-bottom: .5rem;}
+}
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -4840,6 +4858,7 @@ a.close.disabled {
 .bg-primary {
   background-image:url("../img/background/congruent-red.png") !important;
   background-color: #A13941 !important;
+  
   }
 .bg-primary-color {
   background-color: #A13941 !important;
