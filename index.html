@@ -38,9 +38,9 @@
           <li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a>
           </li>
-          <li class="nav-item mx-0 mx-lg-1">
+          <!--<li class="nav-item mx-0 mx-lg-1">
             <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>
@@ -277,14 +277,17 @@
   </section>
 
   <!-- Contact Section -->
+ <!-- 
   <section class="page-section bg-whitepattern" id="contact">
     <div class="container">
 
       <!-- Contact Section Heading -->
-      <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact</h2>
+    
+ <!--   <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact</h2>
 
       <!-- Icon Divider -->
-      <div class="divider-custom">
+   
+ <!--    <div class="divider-custom">
         <div class="divider-custom-line"></div>
         <div class="divider-custom-icon">
           <i class="fas fa-bell"></i>
@@ -293,10 +296,12 @@
       </div>
 
       <!-- Contact Section Form -->
-      <div class="row">
+  
+ <!--     <div class="row">
         <div class="col-lg-8 mx-auto">
           <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+  
+ <!--         <form name="sentMessage" id="contactForm" novalidate="novalidate">
             <div class="control-group">
               <div class="form-group floating-label-form-group controls mb-0 pb-2">
                 <label>Name</label>
@@ -336,7 +341,7 @@
 
     </div>
   </section>
-
+-->
   <!-- Footer -->
   <footer class="bg-secondary footer text-center">
     <div class="container">
@@ -564,17 +569,22 @@
 				
                 <!-- Portfolio Modal - Text -->
 				<p class="mb-4">The first game project in my Futuregames education. Teams of only 2D artists and programmers were to create a game with mechanics inspired by different types of classic arcade games. Hammer Hermit is a game with mechanics inspired by Tetris and Ice Climbers.</p>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia neque assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque. Nam.</p>
+                <p class="mb-4">During this project I mainly worked on the platforming of the player character, handled game states, implemented an almost cancelled co-op mode, as well as producing sound effects and music.</p>
 								
 				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Raytrace collisions</h3>
+				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Custom colliders</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Tight collision checks that haven't once failed me.  
+						Since I was going to work on a platforming game that needed tight controls and precise collisions, I decided from the beginning to never use any physics at all for the movement of the player character - It was out of the question. I had to experiment doing my own player collision checks that were more accurate, something that needed work well with the moving tetris blocks.
+					</p><p>
+						The tetris blocks themselves don't actually have colliders. Whenever a falling tetromino moves, a script called Matrix.cs uses the locations of all tetris blocks to enable tiles on a separate tilemap gameobject, which are only invisible tiles with colliders. I must stress that I was not in charge of any of the tetris parts, but I find this necessary to mention regardless.
+					</p><p>
+						With a whole tilemap that represented the terrain of the entire tetris field, I could check the player’s collision against the terrain using raytrace colliders. I only utilized raytrace colliders against the terrain and used simple box colliders against anything else such as enemies and coins.
+						To ensure I covered all corners of the players boundaries, I cast 3 rays on all four sides of the player, one that was cast from the center of a side and the other two being cast on each respective extreme edge of the side. It wasn’t necessary at first to check for collisions against walls behind the player, only against walls in front of the player since the player cannot move backwards. The introduction of conveyor belts changed that however, since they can move the player to any horizontal direction regardless which one the player is facing.
+					</p><p>
+						The raycast distance had to be very short since they were meant to snap a player to the position where a ray hit the terrain. However, once the player moved, the distances had to be slightly increased in case the raycasts moved past the terrain colliders between frames - that would be a situation where the player could just move or fall through terrain because the raycasts are just too short!
 					</p>
-					<!-- Portfolio Modal - Image -->
-					<img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
 				</div></div>
 								
 				<!-- Portfolio Modal - Header -->
@@ -582,10 +592,18 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Almost canceled feature. Shoehorned in 2 hours before deadline.  
+						Hammer Hermit was initially intended as an asymmetrical co-op game where the 2nd player controlled the falling tetrominos while it was up to the 1st player to do the platforming.
+					</p><p>
+						Creating this mode wasn't particularly hard but it was done by the end of production as it was simpler to have all available actions to the player implemented first in single player mode - because then it was just a matter of checking where the game should look for inputs for the actions. The rules didn't need to change in co-op so the losing conditions of the core gameplay remained the same - it was just about handling inputs in slightly different ways. Mainly. Kind of.
+					</p><p>
+						A class called IndividualInput has two instances located in both the class that handles actions of the player character and the tetromino respectively. The IndividualInput class contains references of names from a set of input axes that matches its configured controller option.
+						Input axes are features in Unity that basically takes two inputs and turns them into values that are easy to use in code.
+					</p><p>
+						These input axes have been set up in the input manager of the project. They all have a name convention that goes "X Horizontal" or "X A", where X is a controller option (1, 2, 3 etc.) and the rest describes what inputs they get.
+						Hammer Hermit has 4 controller options. When the player starts the game by either clicking on '1 Player' or '2 Player' in the start screen, a function gets called in each instance of IndividualInput which sets the controller options to one of four options. That means the instances will now update and check for inputs from a new set of axes than before, since the name references also uses the same naming convention as the ones in inputmanager. The player character's controls don't change as much as the tetris. In 2 player mode, the tetris inputs are now literally checked on a gamepad instead of a keyboard, as in single player mode.
+					</p><p>
+						The tedious part about this was replacing all code where I use Unity's Input class, with IndividualInput's input check functions, in every nook and cranny. I'm glad that this part doesn't need more explaining than that.
 					</p>
-					<!-- Portfolio Modal - Image -->
-					<img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
 				</div></div>
 				
 				<p class="text-center"><b>W.I.P</b></p>
@@ -652,7 +670,12 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Music changes when you're chased, sneaking, doing dishes.  
+						The music system in Transient was designed and implemented by me, I took it as an opportunity to exercise bringing forth the mood and atmosphere in music in such a dynamic way that can only be done in video games, while also utilizing the system to provide audible feedback to the player’s stealth condition.
+					</p><p>
+						Once the player is within hearing range of the monster, the somber piano tune fades into a haunting ambience. Additionally, a beat will start playing as soon as the monster hears the player and closes in to investigate the sound - this beat is heard more clear the closer the monster gets. If the monster sees the player and gives chase, all music will fade away so a drumming chase music can play. Once the monster has lost track of the player, a drumstick version of the chase music quietly plays while fading out over a short duration. If the monster finds the player once again before the drumsticks have completely faded away, a shorter opening of the chase music starts, signaling that the chase is on again.
+					</p><p>
+						How was this achieved through code?
+						The MusicManager class keeps track of what track will be playing, using enum states, of which there are Safe, Peril, Chased and Grabbed. The safe piano music and haunting ambience is always playing but fades back and forth to each other when transitioning between the Safe and Peril states. The GameManager class reads what behavior the monster is doing and uses that to change states in MusicManager accordingly. Once the monster successfully catches the player for instance, the GameManager tells the MusicManager to switch into the Grabbed state where it will in turn fade away all types of music sources.
 					</p>
 				</div></div>
 				
@@ -666,7 +689,7 @@
 				</div></div>
 				
 				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Sound effects collisions</h3>
+				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Sound effects collections</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
@@ -675,8 +698,7 @@
 				</div></div>
 				
 				<p class="text-center"><b>W.I.P</b></p>
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
+				
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
@@ -772,18 +794,7 @@
 					</p>
 				</div></div>
 				
-				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Co-op implementation</h3>
-					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
-					<div class="project-content">
-					<p>
-					Done with character classes checking for different input axes depending on co-op = true/false.
-					</p>
-				</div></div>
-				
 				<p class="text-center"><b>W.I.P</b></p>
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
 				
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -867,16 +878,26 @@
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Level editor</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
+						<!-- Portfolio Modal - Image -->
+						<img class="img-fluid rounded mb-3" src="img/portfolio/agraria/leveleditor.png" alt="">
 						<p>
-						It was like a complete separate project. Insane. 
+							It works by selecting a component on the bars of each side of the screen and then click on a tile to place it there. Clicking on a tile where a component of the same type already is, will remove it instead. Right-clicking on a component that is a fence obstacle or an enemy will bring up specific options, such as rotation of the obstacle or positions of where enemies will walk from and to.
+						</p><p>
+							Each tile on the grid can detect a mouse click with pointer event data interfaces, provided by the Unity engine. A class stores what sort ot current component the user has selected and creates an instance of it which gets positioned on to the tile that has been clicked on. Each tile can also detect if the mouse pointer has started hovering over them with the left mouse already held down. When they detect this, instances of the selected component will be also be added to them. That’s how obstacles and even enemies can quickly be added to any tile the mouse pointer ‘touches’. It’s like drawing on them with components!
+						</p><p>	
+							A level can be saved in the menu and stored into the Asset folders as a ScriptableObject - An unity object that is used to contain data. Information such as grid width and height, name of level, enemies and their movement patterns, position of obstacles.
+							This is done through code with Unity Editor features, where a new instance of a ScriptableObject class, called LevelData, is created and the information that the grid of the level editor has, is passed into the level data.
+						</p><p>
+							Then when data is ready, an asset path becomes generated and the new asset is put there.
+							Upon playing the level, the code will read data from this ScriptableObject asset and create a new grid out of it, which will be the one the player walks around in.
+
+
 						</p>
 					</div>
 				</div>
 				
 				<p class="text-center"><b>W.I.P</b></p>
 				
-				<!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
                 </div>
 				
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -917,8 +938,7 @@
                 </div>
                 <div class="text-secondary">
 				<!-- Portfolio Modal - Intro -->
-                <p class="mb-4"><i>Be the fastest to build your car, and race down the winding mountain road.<br>Steal parts, boost ahead of everyone!
-				All in favor of becoming the next Junkhill Champion!</i></p>
+                <p class="mb-4"><i>Be the fastest to build your car, and race down the winding mountain road.<br>Steal parts, boost ahead of everyone - All in favor of becoming the next Junkhill Champion!</i></p>
 				
 				<!-- Portfolio Modal - Details -->
 				<hr><div class="row text-left">
@@ -942,7 +962,14 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Nothing like skipping lobby and building game, to directly race w friends.
+						Considering the fact that Junkhill Drifters consisted of two phases with distinct gameplays, I thought it was urgent to establish a sort of a state machine in the code early on. This state machine needed to work so that you could start the game in any state you wanted, so that designers could jump straight into the building or racing part of the game for playtesting purposes.
+						</p><p>
+						The C++ classes that managed the states were MyGameModeBase and MyGameStateBase. Names weren’t my strong suit as I tried to understand what roles game modes and states tried to fulfill in Unreal Engine, let alone how to work with them.
+						</p><p>
+						MyGameModeBase instantiates the set amount of max player characters and race cars and positions them using the locations of Playerstart and TargetPoint actors respectively.
+						</p><p>
+						Player characters and racecars are the two types of pawn that a player can possess and depending on if the game switches to the building or race state, characters or race cars will become hidden and the playercontroller will possess the other type of pawn instead.
+
 						</p>
 					</div>
 				</div>
@@ -952,14 +979,12 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Blueprinting magic. It was all a haze.
+						Blueprinting magic.
 						</p>
 					</div>
 				</div>
 				
 				<p class="text-center"><b>W.I.P</b></p>
-                <!-- Portfolio Modal - Image -->
-                <img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>

@@ -4859,6 +4859,8 @@ a.close.disabled {
   background-image:url("../img/background/congruent-red.png") !important;
   background-color: #A13941 !important;
   
+  background-attachment: fixed;
+  
   }
 .bg-primary-color {
   background-color: #A13941 !important;
