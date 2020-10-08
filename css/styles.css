@@ -407,7 +407,7 @@ mark,
   float: right; }
 }
   
-@media (max-width: 767px) {
+@media (max-width: 767.98px) {
 .img-about-me {
   margin-left: auto;
   margin-bottom: .5rem;}
@@ -1965,6 +1965,10 @@ fieldset:disabled a.btn {
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(175, 87, 94, 0.5); }
 
+
+.btn-project-link {
+    min-width: 11rem;
+}
 .btn-secondary {
   color: #fff;
   background-color: #233a5c;
