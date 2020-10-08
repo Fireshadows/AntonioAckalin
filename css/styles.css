@@ -7575,7 +7575,8 @@ form .row:first-child .floating-label-form-group {
   padding-top: 5rem;
   padding-bottom: 5rem;
   background-color: #233a5c;
-  color: #fff; }
+  color: #fff;
+  word-wrap: break-word; }
 
 .copyright {
   background-color: #152337;
