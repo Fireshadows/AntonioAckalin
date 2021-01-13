@@ -500,7 +500,7 @@ pre {
 }
 .project-header {
 	cursor: pointer;
-	padding: 0.5rem 0rem;
+	padding: 0.5rem 0.5rem;
 }
 .project-content {
 	text-align: left !important;
