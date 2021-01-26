@@ -390,7 +390,7 @@
 						A script called ReadyState.cs keeps track of four instances of the class PlayerSlot, based on the maximum number of players. Each instance has an enum denoting the state of the slot. Either the slot is waiting for a player to press a button to join, selecting a ship or is ready and waiting for other slots to finish selections.
 					</p>
 					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Handling selections</h4>
-						<div class="project-content">
+						<div class="project-content gist-embed">
 							<script src="https://gist.github.com/Fireshadows/421e5a17dcf605c82feb696526f14910.js"></script>
 						</div>
 					</div>
@@ -408,7 +408,7 @@
 					Team battle can be enabled in the lobby. Depending on the game mode, different conditions have to be fulfilled for a battle to end. The win conditions are described in code below.
 					</p>
 					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Win conditions and how they're used</h4>
-						<div class="project-content">
+						<div class="project-content gist-embed">
 							<script src="https://gist.github.com/Fireshadows/f4ef31f7edab4066af3c4ddd7c14e040.js"></script>
 						</div>
 					</div>
@@ -418,7 +418,7 @@
 					When a team battle starts, the GameDirector.cs script will create the actual teams using the datas as reference. It will look through all players to see if they possess data of a team that isn’t created yet, and will create that team if that is the case.
 					</p>
 					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Creating teams upon preparing battle</h4>
-						<div class="project-content">
+						<div class="project-content gist-embed">
 							<script src="https://gist.github.com/Fireshadows/d26a52ce3e0b2889739905ad9d160d7e.js"></script>
 						</div>
 					</div>
@@ -878,15 +878,50 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Considering the fact that Junkhill Drifters consisted of two phases with distinct gameplays, I thought it was urgent to establish a sort of a state machine in the code early on. This state machine needed to work so that you could start the game in any state you wanted, so that designers could jump straight into the building or racing part of the game for playtesting purposes.
+						Considering the fact that Junkhill Drifters consisted of two phases with differing gameplays, I thought it was urgent to establish a sort of a state machine in the code early on. This state machine needed to work so that you could start the game in any state you wanted, so that designers could jump straight into the building or racing part of the game for playtesting purposes.
 						</p><p>
-						The C++ classes that managed the states were MyGameModeBase and MyGameStateBase. Names weren’t my strong suit as I tried to understand what roles game modes and states tried to fulfill in Unreal Engine, let alone how to work with them.
+						The C++ classes that managed the states were MyGameModeBase and MyGameStateBase. Yes, names weren’t my strong suit as I tried to understand what roles game modes and states tried to fulfill in Unreal Engine, let alone how to work with them.
 						</p><p>
-						MyGameModeBase instantiates the set amount of max player characters and race cars and positions them using the locations of Playerstart and TargetPoint actors respectively.
+						MyGameModeBase instantiates the set amount of max player characters and race cars, positions them using the locations of Playerstart and TargetPoint actors placed in the world respectively.
 						</p><p>
 						Player characters and racecars are the two types of pawn that a player can possess and depending on if the game switches to the building or race state, characters or race cars will become hidden and the playercontroller will possess the other type of pawn instead.
-
 						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">MyGameModeBase setup</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/5e31912ea58a531668c3cf3ff7b85f02.js"></script>
+							</div>
+						</div>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">MyGameStateBase setup</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/f7f7b5a0f8a55e950d5aaaa59ab0c158.js"></script>
+							</div>
+						</div>
+						<p>
+						To demonstrate: As shown in the code within the MyGAmemodeState tab above, OnCarReady() calls on the SwitchGameState function once all vehicles in the building phase have been built. All the possible states are shown below as an overview of them.
+						</p><ul>
+						  <li>MainMenu</li>
+						  <li>Lobby</li>
+						  <li>BuildTransition</li>
+						  <li>Build</li>
+						  <li>RaceTransition</li>
+						  <li>Race</li>
+						  <li>Results</li>
+						</ul><p>
+						In OnCarReady(), the next state will be RaceTransition. In the transition states, players wait to gain control of their pawns until a countdown has reached zero.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">SwitchGameState()</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/5d8d31750e974d941e3a59c4dd54479c.js"></script>
+							</div>
+						</div>
+						<p>
+						The function ends by calling on an event implemented into the MyGameStateBase Blueprint, which is mostly utilized for showing and removing UI Widgets.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">SwitchGameState() Blueprint event</h4>
+							<div class="project-content">
+								<iframe class="blueprint-embed" src="https://blueprintue.com/render/hbbpdyqs" scrolling="no" allowfullscreen></iframe>
+							</div>
+						</div>
 					</div>
 				</div>
 				

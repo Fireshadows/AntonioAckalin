@@ -609,7 +609,19 @@ pre {
 .about-intro {
 	padding: .75rem .75rem .75rem .75rem;
 
-	background-color: hsl(0 20% 5% / 0.125);
+	background-color: hsl(0 20% 5% / 0.2);
+}
+
+.gist-embed {
+	max-height:50rem;
+	overflow:auto;
+	border-radius: 1.5rem;
+}
+.blueprint-embed {
+	height:20rem;
+	width:39.125em;
+	overflow:auto;
+	border-radius: 1rem;
 }
 
 .row {
