@@ -930,8 +930,25 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Blueprinting magic.
+						The racing track consists of two splines: The camera spline (green) and the player spline (purple). In the racing state, the camera follows the leading player along the camera spline.
 						</p>
+						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/splines.jpg" alt="Splines in the game world"></div>
+						<p>
+						If the other racers don't keep up, they end up offscreen and thus lose a life. As long as players have lives left, they will respawn once the leading racer has reached a checkpoint.
+						</p>
+						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/checkpoint.jpg" alt="First checkpoint in racetrack"></div>
+						<p>
+						I was not in charge of the sublevel blueprint for camera, but I can explain that it calculates which racer is in the lead and uses that racers location to determine the closest point in the player spline. Within the camera blueprint itself (which I also wasn't in charge of), the current point in the player spline is used to determine the closest point in the camera spline.
+						</p><p>
+						This is important to tell because I use the splines to determine which checkpoint eliminated players should respawn in, while making it easy for designers to place checkpoints around the level where they see fit. The small A button in the picture above is a visual indication of a checkpoint actor. It can be dragged around the racetrack and upon starting the game, the closest point to it in the player spline (purple line to the left of it) will be determined and stored in an array of checkpoint spline points like in below picture.
+						</p>
+						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/storingcheckpoints.jpg" alt="Storing checkpoints"></div>
+						<p>
+						During the race, the next checkpoint location where players will respawn is determined in below blueprint.
+						</p>
+						<div class="portfolio-item"><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/update.png" alt="Update checkpoint"></div>
+						Then, once eliminated racers detect that the checkpoint has been passed, they respawn back in.
+						<div class="portfolio-item"><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/respawn.png" alt="Update checkpoint"></div>						
 					</div>
 				</div>
 				
