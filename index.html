@@ -362,13 +362,13 @@
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Unconventional input handling</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
-					<div><img class="img-about-me rounded" src="img/portfolio/rimramrum/construction.jpg" alt="Construction of our input device"></div>
+					<div><img class="img-about-me rounded viewable" src="img/portfolio/rimramrum/construction.jpg" alt="Construction of our input device"></div>
 					<p>
 						The great concern at that time was how to have the game recognize inputs from multiple mice, since our constructed controls relied on using a mouse for each player to detect which way a wheel was steering towards.
 					</p><p>
 						A Unity plug-in called Multi Input made by Raving Bots helped resolve that issue since nearly no other available tools made it possible for the game to distinguish and handle multiple mice devices.
 					</p>
-					<div><img class="img-about-me rounded" src="img/portfolio/rimramrum/final-construction.jpg" alt="Construction of our input device"></div>
+					<div><img class="img-about-me rounded viewable" src="img/portfolio/rimramrum/final-construction.jpg" alt="Construction of our input device"></div>
 					<p>
 						However, the implementation of the new input methods provided by the plug-in library meant that each player needed an input device assigned through code. The game needed to know exactly what input device it should use for each player, instead of assigning any device that it could find. Each steering wheel/mouse device was after all designed to be used by player 1 and 2 respectively.
 					</p><p>
@@ -385,7 +385,7 @@
 					<p>
 					Upon starting the game, players start in a lobby type of screen where they can join the game by pressing any buttons on the gamepad they want to use. After joining, they can select their ship, team or turn on/off auto-aiming for cannonball firing.
 					</p>
-					<img class="img-fluid rounded mb-3" src="img/portfolio/rimramrum/charselect.jpg" alt="">
+					<img class="img-fluid rounded mb-3 viewable" src="img/portfolio/rimramrum/charselect.jpg" alt="">
 					<p>
 						A script called ReadyState.cs keeps track of four instances of the class PlayerSlot, based on the maximum number of players. Each instance has an enum denoting the state of the slot. Either the slot is waiting for a player to press a button to join, selecting a ship or is ready and waiting for other slots to finish selections.
 					</p>
@@ -932,23 +932,25 @@
 						<p>
 						The racing track consists of two splines: The camera spline (green) and the player spline (purple). In the racing state, the camera follows the leading player along the camera spline.
 						</p>
-						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/splines.jpg" alt="Splines in the game world"></div>
+						<div><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/splines.jpg" alt="Splines in the game world"></div>
 						<p>
 						If the other racers don't keep up, they end up offscreen and thus lose a life. As long as players have lives left, they will respawn once the leading racer has reached a checkpoint.
 						</p>
-						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/checkpoint.jpg" alt="First checkpoint in racetrack"></div>
+						<div><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/checkpoint.jpg" alt="First checkpoint in racetrack"></div>
 						<p>
 						I was not in charge of the sublevel blueprint for camera, but I can explain that it calculates which racer is in the lead and uses that racers location to determine the closest point in the player spline. Within the camera blueprint itself (which I also wasn't in charge of), the current point in the player spline is used to determine the closest point in the camera spline.
 						</p><p>
 						This is important to tell because I use the splines to determine which checkpoint eliminated players should respawn in, while making it easy for designers to place checkpoints around the level where they see fit. The small A button in the picture above is a visual indication of a checkpoint actor. It can be dragged around the racetrack and upon starting the game, the closest point to it in the player spline (purple line to the left of it) will be determined and stored in an array of checkpoint spline points like in below picture.
 						</p>
-						<div><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/storingcheckpoints.jpg" alt="Storing checkpoints"></div>
+						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/storingcheckpoints.jpg" alt="Storing checkpoints"></div>
 						<p>
 						During the race, the next checkpoint location where players will respawn is determined in below blueprint.
 						</p>
-						<div class="portfolio-item"><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/update.png" alt="Update checkpoint"></div>
+						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/update.png" alt="Update checkpoint"></div>
+						<p>
 						Then, once eliminated racers detect that the checkpoint has been passed, they respawn back in the racetrack, using the stored spawn location that was determined earlier.
-						<div class="portfolio-item"><img class="img-fluid rounded mb-3" src="img/portfolio/junkhilldrifters/respawn.png" alt="Update checkpoint"></div>						
+						</p>
+						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/respawn.png" alt="Update checkpoint"></div>					
 					</div>
 				</div>
 				

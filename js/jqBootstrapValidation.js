@@ -930,5 +930,12 @@
 		$(this).slideUp();
 	});
 	
+	$(".viewable").click(function() {
+		$(this).toggleClass("viewing");
+	});
+	$(".viewable").mouseleave(function() {
+		$(this).removeClass("viewing");
+	});
+		
 	
 })( jQuery );

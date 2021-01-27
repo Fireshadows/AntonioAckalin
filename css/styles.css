@@ -623,6 +623,14 @@ pre {
 	overflow:auto;
 	border-radius: 1rem;
 }
+.viewable {
+	transition:transform 0.2s ease-in-out;
+	cursor: pointer;
+}
+
+.viewing {
+    transform:scaleX(1.5) scaleY(1.5);
+}
 
 .row {
   display: flex;
