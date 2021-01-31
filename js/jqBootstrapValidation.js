@@ -905,9 +905,9 @@
 
 	};
 
-  $.jqBootstrapValidation = function (options) {
-    $(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this,arguments);
-  };
+	$.jqBootstrapValidation = function (options) {
+		$(":input").not("[type=image],[type=submit]").jqBootstrapValidation.apply(this,arguments);
+	};
 	
 	$(function(){
 	  $("body").on('hidden.bs.modal', function (e) {

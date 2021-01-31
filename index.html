@@ -299,7 +299,7 @@
   <!-- Copyright Section -->
   <section class="copyright py-4 text-center text-white">
     <div class="container">
-      <small>Copyright &copy; Antonio Ackalin 2020. Tools icons by <a href="https://icons8.com/">icons8</a>.</small>
+      <small>Copyright &copy; Antonio Ackalin 2021. Tools icons by <a href="https://icons8.com/">icons8</a>.</small>
     </div>
   </section>
 
@@ -759,7 +759,7 @@
                 <div class="text-secondary">
                 <!-- Portfolio Modal - Intro -->
                 <p class="mb-4"><i>The Grodes next door have been at it again!
-				Alter the level with your fast growing crops to reclaim your special fertilizers and outsmart Harvey's thieving neighbors!</i></p>
+				Alter the level with your fast-growing crops to reclaim your special fertilizers and outsmart Harvey's thieving neighbors!</i></p>
 				
 				<!-- Portfolio Modal - Details -->
 				<hr><div class="row text-left">
@@ -776,24 +776,78 @@
 				<div class="youtube-player mb-4" data-id="NGC-TpGaQX0"></div>
 				
                 <p class="mb-4">The second big game project of Uppsala University. Agraria was a project made to be a modern grid-based action maze game. A lot of programming was focused on AI, pathfinding and level alteration, all the while maintaining a level editor for quick level design prototyping.</p>
+				<p class="mb-4">A lot of programming was done overall. This project contains some of my earlier code written in Unity, so coding standards vary.</p>
 				
 				<!-- Portfolio Modal - Header -->
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Level altering vegetation</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Main mechanic. Change states and properties of tiles on the level grid.  
+						Altering the layout of a grid-based level was the idea that instigated the project. Thus, growing crops to sprout vegetation walls became the main mechanic of the game and it was the primary tool the player used to trap the agile thieves and catch them.
+						</p><p>
+						All entities in the game (player, enemies, crops, pickups) inherits a common class which bestows them references to the grid, current tile and coordination. The player’s ability is to spawn crop entities placed on the tile in front of them.
 						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Spawning Crops</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/59e545be6f7c4fc689004f2479e188f5.js"></script>
+							</div>
+						</div>
+						<p>
+						The ability of crops is to spawn further crops towards a direction. The crop planted by the player gains their direction so they know where to sprout vegetations to. The planted crop passes the info of the direction to the newly sprouted crops in turn so they know where to spread further towards.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Crops spreading further</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/dfea0c31f210a1b973399b16edb823db.js"></script>
+							</div>
+						</div>
+						<p>
+						Crops have a lifetime before they wither and disappear from their tiles. During their lifetime, they grow through different states:  
+						</p><ul>
+						  <li>Seed</li>
+						  <li>Plant</li>
+						  <li>Crop - Activates the effect of the plant</li>
+						  <li>Wall - Begins countdown to death and decay</li>
+						</ul>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Lifetime of a crop</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/a2d69c79e2eeab2403da6f794b1e6efd.js"></script>
+							</div>
+						</div>
+						<p>
+						Once grown enough, crops control the properties on their tile that determine how they are traversable. A sugarcane crop can make watertiles traversable but land tiles impassable for instance.
+						</p>
+						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/agraria/traversabletiles.jpg" alt="Level altering vegetation"></div>
 					</div>
 				</div>
 				
 				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Player avoiding AI</h3>
+				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Grode Thief AI & Heat System</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Uses a troll algorithm to bamboozle the player.  
+						All enemy AIs use Dijkstra’s algorithm to find a path to their target positions on the grid. The Grode Thief is no exception. There are a set of positions on every level which the thief will run to once the player comes too close.  
+						</p><p>
+						The AI decides which position to go to by calculating and comparing angles between the positions of itself, the player and the point. The largest total angle means it's a point that will lead the thief towards the closest opposite direction to the player as possible. This causes the thief to never try to run past the player and maintains a large distance. 
 						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Determining best point to flee towards</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/40b635ea82b074636636f049d3e5f41b.js"></script>
+							</div>
+						</div>
+						<p>
+						Sometimes, once cornered, the thief will have no choice but to run around the player. The thief will even diverge from its path in order to keep as much distance from the player as possible.
+						</p><p>
+						This is achieved by creating something I introduced to the team as the ‘heat system’. The player generates heat around themselves that spreads out on surrounding tiles. When enemies calculate a path, they take the cost of entering a tile into consideration. What the heat does is granting additional cost to the tile, which only the thief will watch out for.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Heat system implementation</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/4aabb5924370ceea6ec9525750f4b3dd.js"></script>
+							</div>
+						</div>
+						<p>
+						Since the thief wants to find the shortest route with least cost, they will especially avoid the player as much as possible.
+						</p>						
+						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/agraria/heatsystem.gif" alt="Heat system in action"></div>			
 					</div>
 				</div>
 				
@@ -802,19 +856,28 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<!-- Portfolio Modal - Image -->
-						<img class="img-fluid rounded mb-3" src="img/portfolio/agraria/leveleditor.png" alt="">
+						<!--<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/agraria/leveleditor.png" alt="Heat system in action"></div>-->
 						<p>
-							It works by selecting a component on the bars of each side of the screen and then click on a tile to place it there. Clicking on a tile where a component of the same type already is, will remove it instead. Right-clicking on a component that is a fence obstacle or an enemy will bring up specific options, such as rotation of the obstacle or positions of where enemies will walk from and to.
+						The Agraria unity project has a developer tool which facilitates editing and creating new levels for playtesting and prototyping. It’s a separate unity scene where the user can place obstacles, enemies and pickups onto an empty grid of which dimensions are also adjustable.
+						Below is a video demonstration of me using it and its various features.
+						</p>
+						<!-- Portfolio Modal - Video -->
+						<div class="youtube-player mb-3 rounded" data-id="gW03U23ZsFQ"></div>
+						<p>
+						It works by selecting a component on the bars of each side of the screen and then click on a tile to place it there. Clicking on a tile where a component of the same type already is, will remove it instead. Right-clicking on a component that is a fence obstacle or an enemy will bring up specific options, such as rotation of the obstacle or positions of where enemies will walk from and to.
 						</p><p>
-							Each tile on the grid can detect a mouse click with pointer event data interfaces, provided by the Unity engine. A class stores what sort ot current component the user has selected and creates an instance of it which gets positioned on to the tile that has been clicked on. Each tile can also detect if the mouse pointer has started hovering over them with the left mouse already held down. When they detect this, instances of the selected component will be also be added to them. That’s how obstacles and even enemies can quickly be added to any tile the mouse pointer ‘touches’. It’s like drawing on them with components!
+						Each tile on the grid can detect a mouse click with pointer event data interfaces, provided by the Unity engine. A class stores what sort ot current component the user has selected and creates an instance of it which gets positioned on to the tile that has been clicked on. Each tile can also detect if the mouse pointer has started hovering over them with the left mouse already held down. When they detect this, instances of the selected component will be also be added to them. That’s how obstacles and even enemies can quickly be added to any tile the mouse pointer ‘touches’. It’s like drawing on them with components!
 						</p><p>	
-							A level can be saved in the menu and stored into the Asset folders as a ScriptableObject - An unity object that is used to contain data. Information such as grid width and height, name of level, enemies and their movement patterns, position of obstacles.
-							This is done through code with Unity Editor features, where a new instance of a ScriptableObject class, called LevelData, is created and the information that the grid of the level editor has, is passed into the level data.
-						</p><p>
-							Then when data is ready, an asset path becomes generated and the new asset is put there.
-							Upon playing the level, the code will read data from this ScriptableObject asset and create a new grid out of it, which will be the one the player walks around in.
-
-
+						A level can be saved in the menu and stored into the Asset folders as a ScriptableObject - An unity object that is used to contain data. Information such as grid width and height, name of level, enemies and their movement patterns, position of obstacles.
+						This is done through code with Unity Editor features, where a new instance of a ScriptableObject class, called LevelData, is created and the information that the grid of the level editor has, is passed into the level data.
+						Then when data is ready, an asset path becomes generated and the new asset is put there.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Storing data of level into assets</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/4c5e183248e4c5524c0b20b2b81da901.js"></script>
+							</div>
+						</div><p>
+						Upon playing the level, the code will read data from this ScriptableObject asset and create a new grid out of it, which will be the one the player walks around in.
 						</p>
 					</div>
 				</div>
@@ -883,26 +946,26 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						Considering the fact that Junkhill Drifters consisted of two phases with differing gameplays, I thought it was urgent to establish a sort of a state machine in the code early on. This state machine needed to work so that you could start the game in any state you wanted, so that designers could jump straight into the building or racing part of the game for playtesting purposes.
+							Considering the fact that Junkhill Drifters consisted of two phases with differing gameplays, I thought it was urgent to establish a sort of a state machine in the code early on. This state machine needed to work so that you could start the game in any state you wanted, so that designers could jump straight into the building or racing part of the game for playtesting purposes.
 						</p><p>
-						The C++ classes that managed the states were MyGameModeBase and MyGameStateBase. Yes, names weren’t my strong suit as I tried to understand what roles game modes and states tried to fulfill in Unreal Engine, let alone how to work with them.
+							The C++ classes that managed the states were MyGameModeBase and MyGameStateBase. Yes, names weren’t my strong suit as I tried to understand what roles game modes and states tried to fulfill in Unreal Engine, let alone how to work with them.
 						</p><p>
-						MyGameModeBase instantiates the set amount of max player characters and race cars, positions them using the locations of Playerstart and TargetPoint actors placed in the world respectively.
+							MyGameModeBase instantiates the set amount of max player characters and race cars, positions them using the locations of Playerstart and TargetPoint actors placed in the world respectively.
 						</p><p>
-						Player characters and racecars are the two types of pawn that a player can possess and depending on if the game switches to the building or race state, characters or race cars will become hidden and the playercontroller will possess the other type of pawn instead.
+							Player characters and racecars are the two types of pawn that a player can possess and depending on if the game switches to the building or race state, characters or race cars will become hidden and the playercontroller will possess the other type of pawn instead.
 						</p>
-						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">MyGameModeBase setup</h4>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Setting up MyGameModeBase</h4>
 							<div class="project-content gist-embed">
 								<script src="https://gist.github.com/Fireshadows/5e31912ea58a531668c3cf3ff7b85f02.js"></script>
 							</div>
 						</div>
-						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">MyGameStateBase setup</h4>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Setting up MyGameStateBase</h4>
 							<div class="project-content gist-embed">
 								<script src="https://gist.github.com/Fireshadows/f7f7b5a0f8a55e950d5aaaa59ab0c158.js"></script>
 							</div>
 						</div>
 						<p>
-						To demonstrate: As shown in the code within the MyGAmemodeState tab above, OnCarReady() calls on the SwitchGameState function once all vehicles in the building phase have been built. All the possible states are shown below as an overview of them.
+							To demonstrate: As shown in the code within the MyGAmemodeState tab above, OnCarReady() calls on the SwitchGameState function once all vehicles in the building phase have been built. All the possible states are shown below as an overview of them.
 						</p><ul>
 						  <li>MainMenu</li>
 						  <li>Lobby</li>
@@ -912,17 +975,17 @@
 						  <li>Race</li>
 						  <li>Results</li>
 						</ul><p>
-						In OnCarReady(), the next state will be RaceTransition. In the transition states, players wait to gain control of their pawns until a countdown has reached zero.
+							In OnCarReady(), the next state will be RaceTransition. In the transition states, players wait to gain control of their pawns until a countdown has reached zero.
 						</p>
-						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">SwitchGameState()</h4>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Switching game states</h4>
 							<div class="project-content gist-embed">
 								<script src="https://gist.github.com/Fireshadows/5d8d31750e974d941e3a59c4dd54479c.js"></script>
 							</div>
 						</div>
 						<p>
-						The function ends by calling on an event implemented into the MyGameStateBase Blueprint, which is mostly utilized for showing and removing UI Widgets.
+							The function ends by calling on an event implemented into the MyGameStateBase Blueprint, which is mostly utilized for showing and removing UI Widgets.
 						</p>
-						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">SwitchGameState() Blueprint event</h4>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Blueprint event after state switch</h4>
 							<div class="project-content">
 								<iframe class="blueprint-embed" src="https://blueprintue.com/render/hbbpdyqs" scrolling="no" allowfullscreen></iframe>
 							</div>
