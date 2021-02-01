@@ -593,19 +593,33 @@
 				<div class="youtube-player mb-4 rounded" data-id="1yVosrdHw2s"></div>
 				
                 <p class="mb-4">The third game project of Futuregames, where the game had to evoke a certain theme of our choice. Transient came to evoke suspiciousness in the player. With a large team and scope, Transient became one of the most extensive projects I’ve been part of as of yet.</p>
+                <p class="mb-4">During the project I was in charge of the sounds and music as well as implementation of it. I fine-tuned movement, camera obstruction, interactable detection and UI.</p>
 								
 				<!-- Portfolio Modal - Header -->
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Dynamic music system</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-						The music system in Transient was designed and implemented by me, I took it as an opportunity to exercise bringing forth the mood and atmosphere in music in such a dynamic way that can only be done in video games, while also utilizing the system to provide audible feedback to the player’s stealth condition.
+					The music system in Transient was designed and implemented by me, I took it as an opportunity to exercise bringing forth the mood and atmosphere in music in such a dynamic way that can only be done in video games, while also utilizing the system to provide audible feedback to the player’s stealth condition.
 					</p><p>
-						Once the player is within hearing range of the monster, the somber piano tune fades into a haunting ambience. Additionally, a beat will start playing as soon as the monster hears the player and closes in to investigate the sound - this beat is heard more clear the closer the monster gets. If the monster sees the player and gives chase, all music will fade away so a drumming chase music can play. Once the monster has lost track of the player, a drumstick version of the chase music quietly plays while fading out over a short duration. If the monster finds the player once again before the drumsticks have completely faded away, a shorter opening of the chase music starts, signaling that the chase is on again.
+					Once the player is within hearing range of the monster, the somber piano tune fades into a haunting ambience. Additionally, a beat will start playing as soon as the monster hears the player and closes in to investigate the sound - this beat is heard more clear the closer the monster gets. If the monster sees the player and gives chase, all music will fade away so a drumming chase music can play. Once the monster has lost track of the player, a drumstick version of the chase music quietly plays while fading out over a short duration. If the monster finds the player once again before the drumsticks have completely faded away, a shorter opening of the chase music starts, signaling that the chase is on again.
 					</p><p>
-						How was this achieved through code?
-						The MusicManager class keeps track of what track will be playing, using enum states, of which there are Safe, Peril, Chased and Grabbed. The safe piano music and haunting ambience is always playing but fades back and forth to each other when transitioning between the Safe and Peril states. The GameManager class reads what behavior the monster is doing and uses that to change states in MusicManager accordingly. Once the monster successfully catches the player for instance, the GameManager tells the MusicManager to switch into the Grabbed state where it will in turn fade away all types of music sources.
+					How was this achieved through code?<br>
+					The MusicManager class keeps track of what track will be playing, using enum states, of which there are Safe, Peril, Chased and Grabbed. The safe piano music and haunting ambience is always playing but fades back and forth to each other when transitioning between the Safe and Peril states.
 					</p>
+					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Switching music states</h4>
+						<div class="project-content gist-embed">
+							<script src="https://gist.github.com/Fireshadows/966f8dcbad31ee63327c34bb8d498569.js"></script>
+						</div>
+					</div>
+					<p>
+					The GameManager class reads what behavior the monster is doing and uses that to change states in MusicManager accordingly. Once the monster successfully catches the player for instance, the GameManager tells the MusicManager to switch into the Grabbed state where it will in turn fade away all types of music sources.
+					</p>
+					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Music manager requesting new states</h4>
+						<div class="project-content gist-embed">
+							<script src="https://gist.github.com/Fireshadows/1355cd418dbffc6a6d04fb339c6457cf.js"></script>
+						</div>
+					</div>
 				</div></div>
 				
 				<!-- Portfolio Modal - Header -->
@@ -613,16 +627,48 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Irritating to work with. Real talk. 
+					Throughout the game, the player can interact with various objects in the dark house to perform actions such as open drawers, hide in cupboards, view drawings and pick up items. A programmer in my team scripted the interface called IInteractable which implements usable functions for interacting with objects and when nearing or leaving them.
+					</p><p>
+					I took upon the task of perfecting the way the player detects interactable objects since the player could be surrounded by interactables and needed precise interactions.
+					First I researched third person horror games like the Resident Evil 2 remake and The Evil Within to deconstruct their interaction systems. The conclusion I came to was to add two types of collisions that helps the player character detect interactables.
+					</p><p>
+					The first was a spherecast fired towards the direction the camera was facing. The spherecast would only hit anything in the interactable layer, so uninteresting things such as walls or furniture wouldn’t block the spherecast. With the spherecast, the player can aim towards the things they want to interact with.<br>
+					However, realizing that it would be annoying to have to look at everything before interacting, especially on the run from the shadow monster, another collision was added.
+					</p><p>
+					The other collider is a capsule collider component that detects interactables in close proximity around the player. If the spherecast doesn’t find any interactables, then the player can still interact with objects that are close enough to them.
+					</p>
+					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Detecting interactables</h4>
+						<div class="project-content gist-embed">
+							<script src="https://gist.github.com/Fireshadows/2afb1208889d42bc006ab5d7c5ee7fbb.js"></script>
+						</div>
+					</div>
+					<p>
+					An extra linecast is fired between the positions of the player and the interactable object to confirm that nothing is blocking the player from reaching the interactable.
 					</p>
 				</div></div>
 				
 				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Sound effects collections</h3>
+				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Interaction UI</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 					<p>
-					Classes that randomly plays sfx from a collection. Easily usable. 
+					As I researched interaction systems in third person horror games, I noticed a general design on the UI of the interactables. After the team's approval, I went down to implement an UI system based on the horror games.
+					</p><p>
+					A prefab called Interaction UI is placed as a child gameobject in all interactable gameobjects. The prefab holds two separate images on a canvas component that renders them in the world.<br>
+					The first image is a button prompt, indicating that the object will be interacted with once the Interact button is pressed. Only one interactable will show the other image at a time, since the player cannot interact with multiple interactables at once. The prompt icon appears of course when the player faces the interactable.
+					The other image is an icon representing the type of action that will be performed once interaction happens.
+					</p>
+					<img class="img-fluid rounded mb-3 viewable" src="img/portfolio/transient/interactionui.jpg" alt="">
+					<p>
+					An interaction UI prefab will know when to show its interaction icon once the player has collided with its sphere collider component. This collider component can be adjusted separately for each prefab instance to be larger, smaller or offset towards somewhere. It was left up to designers to fine-tune how. Of course, once leaving the sphere collider, the interaction icon will disappear. They work very well to inform players when they are near something interactable as well as what type of interactable it is.
+					</p>
+					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">InteractionUI class</h4>
+						<div class="project-content gist-embed">
+							<script src="https://gist.github.com/Fireshadows/b699370ceb4fd0fab6e46d806c58b94a.js"></script>
+						</div>
+					</div>
+					<p>
+					The interactable will invoke events to call the correct functions in InteractionUI once the player interacts with it in different ways (facing the object, leaving it, interacting).
 					</p>
 				</div></div>
 				
@@ -692,7 +738,7 @@
 						A script called BattleDirector.cs, manages a battle once the player initiates it, by touching a mob in the level. Each player character and enemy are positioned on the locations marked on the picture below.
 						</p>
 						<!-- Portfolio Modal - Image -->
-						<img class="img-fluid rounded mb-2" src="img/portfolio/ambiverse/battlesystem.png" alt="">						
+						<img class="img-fluid rounded mb-2 viewable" src="img/portfolio/ambiverse/battlesystem.png" alt="">						
 						<p>
 						All characters charge up a gauge and once 100% filled, they get put in a list that I call the act queue. The higher a character’s speed stat is, the less they get to wait.
 						The battle director ensures the first one in the act queue gets to act first by looking at the first element in the queue. Once the character has finished acting, they get removed from the list and the battle director will look at the new character that is first in the queue, if there’s any left in it.
