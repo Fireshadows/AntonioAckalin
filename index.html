@@ -434,7 +434,6 @@
 					<img class="img-fluid rounded mb-5" src="img/portfolio/placeholder.jpg" alt="">-->
 				</div></div>
 				
-				<p class="text-center"><b>W.I.P</b></p>
 				</div>
 				
 				<button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -501,10 +500,19 @@
 						Since I was going to work on a platforming game that needed tight controls and precise collisions, I decided from the beginning to never use any physics at all for the movement of the player character - It was out of the question. I had to experiment doing my own player collision checks that were more accurate, something that needed work well with the moving tetris blocks.
 					</p><p>
 						The tetris blocks themselves don't actually have colliders. Whenever a falling tetromino moves, a script called Matrix.cs uses the locations of all tetris blocks to enable tiles on a separate tilemap gameobject, which are only invisible tiles with colliders. I must stress that I was not in charge of any of the tetris parts, but I find this necessary to mention regardless.
-					</p><p>
+					</p>
+					<!-- Portfolio Modal - Image -->
+					<div><img class="img-about-me rounded viewable" src="img/portfolio/hammerhermit/raycasts.jpg" alt="Visible raycasts"></div>
+					<p>
 						With a whole tilemap that represented the terrain of the entire tetris field, I could check the player’s collision against the terrain using raytrace colliders. I only utilized raytrace colliders against the terrain and used simple box colliders against  anything else such as enemies and coins.
 						To ensure I covered all corners of the players boundaries, I cast 3 rays on all four sides of the player, one that was cast from the center of a side and the other two being cast on each respective extreme edge of the side. It wasn’t necessary at first to check for collisions against walls behind the player, only against walls in front of the player since the player cannot move backwards. The introduction of conveyor belts changed that however, since they can move the player to any horizontal direction regardless which one the player is facing.
-					</p><p>
+					</p>
+					<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Horizontal movement & raycast collisions</h4>
+						<div class="project-content gist-embed">
+							<script src="https://gist.github.com/Fireshadows/cdba12bb3fe556e84c6e248e1002a495.js"></script>
+						</div>
+					</div>
+					<p>
 						The raycast distance had to be very short since they were meant to snap a player to the position where a ray hit the terrain. However, once the player moved, the distances had to be slightly increased in case the raycasts moved past the terrain colliders between frames - that would be a situation where the player could just move or fall through terrain because the raycasts are just too short!
 					</p>
 				</div></div>
@@ -527,10 +535,9 @@
 						The tedious part about this was replacing all code where I use Unity's Input class, with IndividualInput's input check functions, in every nook and cranny. I'm glad that this part doesn't need more explaining than that.
 					</p>
 				</div></div>
-				
-				<p class="text-center"><b>W.I.P</b></p>
-				
+								
                 </div>
+				
 				<button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
                   Close Window
@@ -864,12 +871,11 @@
 						<!-- Portfolio Modal - Video -->
 						<div class="youtube-player mb-3 rounded" data-id="gW03U23ZsFQ"></div>
 						<p>
-						It works by selecting a component on the bars of each side of the screen and then click on a tile to place it there. Clicking on a tile where a component of the same type already is, will remove it instead. Right-clicking on a component that is a fence obstacle or an enemy will bring up specific options, such as rotation of the obstacle or positions of where enemies will walk from and to.
+						It works by selecting a component on the bars of each side of the screen and then clicking on a tile to place it there. Clicking on a tile where a component of the same type already is, will remove it instead. Right-clicking on a component that is a fence obstacle or an enemy will bring up specific options, such as rotation of the obstacle or positions of where enemies will walk from and to.
 						</p><p>
-						Each tile on the grid can detect a mouse click with pointer event data interfaces, provided by the Unity engine. A class stores what sort ot current component the user has selected and creates an instance of it which gets positioned on to the tile that has been clicked on. Each tile can also detect if the mouse pointer has started hovering over them with the left mouse already held down. When they detect this, instances of the selected component will be also be added to them. That’s how obstacles and even enemies can quickly be added to any tile the mouse pointer ‘touches’. It’s like drawing on them with components!
+						Each tile on the grid can detect a mouse click with pointer event data interfaces, provided by the Unity engine. A class stores what sort of current component the user has selected and creates an instance of it which gets positioned on to the tile that has been clicked on. Each tile can also detect if the mouse pointer has started hovering over them with the left mouse already held down. When they detect this, instances of the selected component will also be added to them. That’s how obstacles and even enemies can quickly be added to any tile the mouse pointer ‘touches’. It’s like drawing on them with components!
 						</p><p>	
-						A level can be saved in the menu and stored into the Asset folders as a ScriptableObject - An unity object that is used to contain data. Information such as grid width and height, name of level, enemies and their movement patterns, position of obstacles.
-						This is done through code with Unity Editor features, where a new instance of a ScriptableObject class, called LevelData, is created and the information that the grid of the level editor has, is passed into the level data.
+						A level can be saved in the menu and stored into the Asset folders as a ScriptableObject - An unity object that is used to contain data. Information such as grid width and height, name of level, enemies and their movement patterns, position of obstacles. This is done through code with Unity Editor features, where a new instance of a ScriptableObject class, called LevelData, is created and the information that the grid of the level editor has, is passed into the level data.
 						Then when data is ready, an asset path becomes generated and the new asset is put there.
 						</p>
 						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Storing data of level into assets</h4>
@@ -880,10 +886,7 @@
 						Upon playing the level, the code will read data from this ScriptableObject asset and create a new grid out of it, which will be the one the player walks around in.
 						</p>
 					</div>
-				</div>
-				
-				<p class="text-center"><b>W.I.P</b></p>
-				
+				</div>				
                 </div>
 				
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -1022,7 +1025,6 @@
 					</div>
 				</div>
 				
-				<p class="text-center"><b>W.I.P</b></p>
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
