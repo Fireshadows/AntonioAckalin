@@ -671,9 +671,7 @@
 					The interactable will invoke events to call the correct functions in InteractionUI once the player interacts with it in different ways (facing the object, leaving it, interacting).
 					</p>
 				</div></div>
-				
-				<p class="text-center"><b>W.I.P</b></p>
-				
+								
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
                   <i class="fas fa-times fa-fw"></i>
@@ -735,7 +733,7 @@
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
 						<p>
-						A script called BattleDirector.cs, manages a battle once the player initiates it, by touching a mob in the level. Each player character and enemy are positioned on the locations marked on the picture below.
+						A script called BattleDirector.cs, manages a battle once the player initiates it by touching a mob in the level. Each player character and enemy are positioned on the locations marked on the picture below.
 						</p>
 						<!-- Portfolio Modal - Image -->
 						<img class="img-fluid rounded mb-2 viewable" src="img/portfolio/ambiverse/battlesystem.png" alt="">						
@@ -746,31 +744,74 @@
 						If any characters that are waiting in the act queue have their selected targets destroyed then the battle director will randomly select a new one for them.
 						</p><p>
 						Player characters that have filled their wait gauge, need to select what type of action to do before being put in the act queue. Actions can be attacking or using an item, though the latter is still not a feature.
-						</p><p>
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Running the Active Time Battle system</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/5e6e12c468a3336495d75b57cbea44f2.js"></script>
+							</div>
+						</div>
+						<p>
 						For characters that are first in the act queue, a coroutine function will fire off from another script dedicated to different types of actions - ActionHandler.cs.
 						</p>
 					</div>
 				</div>
 				
 				<!-- Portfolio Modal - Header -->
-				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Active attack commands</h3>
+				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Active attack combo system</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
-					<p>
-					Wail away with a bunch of coroutines which I'm now surprised still works well.  
-					</p>
+						<!-- Portfolio Modal - Image -->
+						<div><img class="img-about-me rounded viewable" src="img/portfolio/ambiverse/combodata.jpg"  alt="Combo data in inspector"></div>
+						<p>
+						Ambiverse is an RPG that features a combo system. It’s sort of inspired by 3D character action games such as Bayonetta and Devil May Cry rather than 2D fighting games. When attacking an enemy in battle, the player can input combinations of two attack buttons to chain together a combo for higher damage or to attack several enemies at once. 
+						</p>
+						<p>
+						Which combo is performed and what it actually does depends on the information of scriptableobject classes ComboChainData and ComboAttackData. These are stored assets of which new instances can easily be created and edited right in the editor. It’s important however that a ComboChainData is given an unique sequence of ComboAttackData objects. The code can handle duplicate combos but there’s no reason for duplicate combos.
+						</p><p>
+						When the player presses one of the attack buttons, a function named GetComboAttack() will be called which will try to get a ComboAttackData depending on what sort of attack button was pressed.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Retrieving ComboAttackData</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/845710a8e173256069391d76f28c436a.js"></script>
+							</div>
+						</div>
+						<p>
+						The entire attack sequence is handled within one coroutine, which is like a function that is able to run its code over several frames. Once data of a combo attack is retrieved, the ActionHandler script uses it to apply various effects to the targets (launch target away, spin it around, attack multiple targets).
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Applying effects on targets</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/57b966f158bc87dcd49c32fc583ebad1.js"></script>
+							</div>
+						</div>
 				</div></div>
 				
 				<!-- Portfolio Modal - Header -->
 				<div class="project-section text-white mb-2"><h3 class="rounded bg-secondary-color project-header">Level flip mechanic</h3>
 					<!--<div class="divider-custom"><div class="header-custom-line"></div></div>-->
 					<div class="project-content">
-					<p>
-					I sometimes really ask myself how I was able to pull it off. Don't think the methods works in current versions of Unity.
-					</p>
+						<p>
+						Twirling the level around is the main mechanic of the game, flipping the layout vertically. It adds a new dimension to the platforming and it’s how the player can avoid harder enemy mobs.
+						</p>
+						<!-- Portfolio Modal - Image -->
+						<img class="img-fluid rounded mb-2 viewable" src="img/portfolio/ambiverse/worldtwirl.gif" alt="">		
+						<p>
+						As shown, not only is the level flipped upside down, it also changes its looks. New colors are shown. Mobs get replaced by shadows. What’s happening behind the scenes?
+						</p><p>
+						To begin with, the whole level doesn’t actually get flipped around. It’s made to appear so by manipulating cameras and gravities. Two cameras are being switched between. Once the player twirls the world, the first camera gets inactivated and the other one activates. In order to gain a smooth fade transition, both cameras render to their own target textures which get displayed onto the screen as raw images in the canvas UI. The opacities of the raw images slides down and up from zero to gain the fade transition. The distortion effect is achieved by changing variables of a twirl effect shader from ImageEffects which is part of Unity Standard Assets.
+						</p><p>
+						Graphics of the level doesn’t actually swap to new graphics, it’s all already there. There is already a graphic of a shadowed mob in the upside down. It’s just that the two cameras culls away different layers. The upside down camera culls the game objects that are in the normal world layer and vice versa.
+						</p><p>
+						On the programming side, the gravity of the player is simply being inverted and the direction faced is also flipped around so the player is still facing the same direction on the screen.
+						</p>
+						<div class="project-section text-white mb-2"><h4 class="rounded bg-secondary-color project-header">Inverting controller values upon twirling</h4>
+							<div class="project-content gist-embed">
+								<script src="https://gist.github.com/Fireshadows/a0474196e2313e012ad3125d49b0d03c.js"></script>
+							</div>
+						</div>
+						<p>
+						Yes, working on this feature was tough and confusing.
+						</p>
 				</div></div>
-				
-				<p class="text-center"><b>W.I.P</b></p>
 				
                 </div>
                 <button class="btn btn-primary" href="#" data-dismiss="modal">
@@ -1055,13 +1096,13 @@
 						</p>
 						<div><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/checkpoint.jpg" alt="First checkpoint in racetrack"></div>
 						<p>
-						I was not in charge of the sublevel blueprint for camera, but I can explain that it calculates which racer is in the lead and uses that racers location to determine the closest point in the player spline. Within the camera blueprint itself (which I also wasn't in charge of), the current point in the player spline is used to determine the closest point in the camera spline.
+						I was not in charge of the sublevel blueprint for the camera, but I can explain that it calculates which racer is in the lead and uses that racers location to determine the closest point in the player spline. Within the camera blueprint itself (which I also wasn't in charge of), the current point in the player spline is used to determine the closest point in the camera spline.
 						</p><p>
-						This is important to tell because I use the splines to determine which checkpoint eliminated players should respawn in, while making it easy for designers to place checkpoints around the level where they see fit. The small A button in the picture above is a visual indication of a checkpoint actor. It can be dragged around the racetrack and upon starting the game, the closest point to it in the player spline (purple line to the left of it) will be determined and stored in an array of checkpoint spline points like in below picture.
+						This is important to tell because I use the splines to determine which checkpoint eliminated players should respawn in, while making it easy for designers to place checkpoints around the level where they see fit. The small A button in the picture above is a visual indication of a checkpoint actor. It can be dragged around the racetrack and upon starting the game, the closest point to it in the player spline (purple line to the left of it) will be determined and stored in an array of checkpoint spline points like in the picture below.
 						</p>
 						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/storingcheckpoints.jpg" alt="Storing checkpoints"></div>
 						<p>
-						During the race, the next checkpoint location where players will respawn is determined in below blueprint.
+						During the race, the next checkpoint location where players will respawn is determined in the blueprint below.
 						</p>
 						<div class="project-img"><img class="img-fluid rounded mb-3 viewable" src="img/portfolio/junkhilldrifters/update.png" alt="Update checkpoint"></div>
 						<p>
