@@ -7373,7 +7373,7 @@ h3 {
     border-color: #dee2e6; } }
 
 .page-section {
-  padding: 3rem 0; }
+  padding: 5rem 0; }
   .page-section .page-section-heading {
     font-size: 2.25rem;
     line-height: 2rem; }
@@ -7612,10 +7612,11 @@ form .row:first-child .floating-label-form-group {
 
 .portfolio {
   padding-top: 5rem;
-  padding-bottom: 4.5rem; }
+  padding-bottom: 6.5rem; }
 
 .page-section-heading {
-  display: block; }
+  display: block;
+  padding-top: 1rem;  }
 
 .pre {
   white-space: pre; }
