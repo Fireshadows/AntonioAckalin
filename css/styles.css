@@ -7510,11 +7510,16 @@ h3 {
     transform: scaleX(1.05) scaleY(1.05);
 }
 
+.portfolio-main {
+  max-width: 50rem;}
+.portfolio-student {
+  max-width: 25rem;}
+  
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
   display: block;
-  max-width: 25rem;
+  /*max-width: 25rem;*/
   border-radius: 0.5rem;
   overflow: hidden;
   transition: transform 0.2s ease-in-out; }
